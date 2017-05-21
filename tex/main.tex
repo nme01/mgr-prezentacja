@@ -1,0 +1,269 @@
+\documentclass[xcolor=dvipsnames]{beamer}
+\usecolortheme[named=Orange]{structure}
+\usetheme{Warsaw}
+
+\usepackage{multicol}
+\usepackage{caption} % podpisy pod obrazkami
+\usepackage[export]{adjustbox} % ramki dla obrazków
+\usepackage{pgfplots} % wykresy
+\usepackage{amsmath} % wzory funkcji
+\usepackage{tex/slashbox} % łamana linia w górnym lewym rogu tabeli (podzielenie komórki na dwie)
+
+\usepackage{polski}
+\usepackage[utf8x]{inputenc}
+
+% pisanie Rys. zamiast Rysunek pod obrazkami
+\renewcommand{\figurename}{Rys.}
+
+\setbeamerfont{caption}{series=\normalfont,size=\fontsize{7}{7}}
+
+% numerowanie slajdów
+\expandafter\def\expandafter\insertshorttitle\expandafter{%
+  \insertshorttitle\hfill%
+\insertframenumber\,/\,\inserttotalframenumber}
+
+% slajdy z planem każdej sekcji
+%\AtBeginSection[]
+%{
+%  \begin{frame}
+%    \frametitle{Plan prezentacji}
+%    \tableofcontents[currentsection]
+%  \end{frame}
+%}
+
+% referencje
+\usepackage[absolute,overlay]{textpos}
+\newenvironment{reference}[2]{%
+  \begin{textblock*}{\textwidth}(#1,#2)
+\footnotesize\it\bgroup\color{red!50!black}}{\egroup\end{textblock*}}
+
+\title[Obrona pracy dyplomowej]{Metody głębokiego uczenia w wybranych problemach klasyfikacji}
+\subtitle[]{}
+\author[J. Witkowski]{Jacek Witkowski}
+\institute[Instytut Informatyki]{
+  promotor: mgr inż.~Rajmund Kożuszek
+}
+\date[Maj 2017]{29 maja 2017}
+
+\begin{document}
+
+% strona tytułowa
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% plan prezentacji
+\begin{frame}{Plan prezentacji}
+  \tableofcontents
+\end{frame}
+
+% Musi być:
+% jakoś zaciekawić ludzi tematem
+% czym jest regularyzacja L2,
+% czym jest lokalna normalizacja odpowiedzi
+
+% Fajnie, żeby było:
+% coś o Tensorflow,
+% przykład z jabłkami
+
+
+\section{Badania}
+\subsection{Cel badań}
+\begin{frame}{Cel badań}
+	\begin{itemize}
+	    \item \textbf{Cel badań:} zbadanie wpływu regularyzacji L2 i lokalnej normalizacji odpowiedzi na~jakość
+	    klasyfikacji.
+	    \item \textbf{Jakość klasyfikacji:} dokładność, czyli stosunek poprawnie sklasyfikowanych przykładów
+	           do~całkowitej liczby przykładów.
+    \end{itemize}
+\end{frame}
+\subsection{Dobór wartości hiperparametrów}
+\begin{frame}{Dobór wartości hiperparametrów}
+    \begin{block}{Badane hiperparametry}
+        \textbf{$\lambda$}~--~określa wpływ regularyzacji L2 (im~większa wartość, tym~większy wpływ)
+
+        \vspace{2mm}
+        \textbf{$\alpha$}~--~określa intensywność lokalnej normalizacji odpowiedzi (im~większa wartość,
+        tym~większa intensywność).
+    \end{block}
+    \begin{block}{Metoda poszukiwań}
+        \textbf{Przeszukiwanie kratowe} (\textit{ang.~grid search})~--~zbadanie wszystkich możliwych par parametrów
+        $\lambda$ i~$\alpha$, gdzie badane wartości każdego z~parametrów należą do~pewnego skończonego dyskretnego
+        zbioru
+    \end{block}
+\end{frame}
+\subsection{Eksperymenty}
+\begin{frame}
+    Warstwy sieci:
+    \begin{enumerate}
+        \item Warstwa splotowa z 64 maskami 5x5x3,
+        \item Warstwa skalująca typu max-pooling o rozmiarze 3x3x1 (przesunięcie: 2 piksele),
+        \item Warstwa lokalnej normalizacji odpowiedzi,
+        \item Warstwa splotowa z 64 maskami 5x5x64,
+        \item Warstwa lokalnej normalizacji odpowiedzi,
+        \item Warstwa skalująca typu max-pooling o rozmiarze 3x3x1 (przesunięcie: 2 piksele),
+        \item Warstwa w~pełni połączona z 384 neuronami,
+        \item Warstwa w pełni połączona z 192 neuronami,
+        \item Warstwa w pełni połączona z 10 neuronami.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Eksperyment pierwotny}
+Liczba iteracji: 100 tysięcy
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|}
+      \hline
+      \backslashbox{$\alpha$}{$\lambda$} & 0.0005 & 0.001 & 0.005 & 0.01 & 0.05 \\
+      \hline
+      0.00001 & 0.83 & 0.79 & 0.76 & 0.75 & 0.78 \\
+      \hline
+      0.00005 & 0.82 & 0.80 & 0.77 & 0.78 & 0.75 \\
+      \hline
+      0.0001  & 0.84 & 0.81 & 0.80 & 0.73 & 0.77 \\
+      \hline
+      0.0005  & 0.85 & 0.83 & 0.84 & 0.81 & 0.79 \\
+      \hline
+      0.001   & 0.84 & 0.84 & 0.82 & 0.78 & 0.76 \\
+      \hline
+    \end{tabular}
+    \caption{Wpływ regularyzacji L2 ($\lambda$) i~normalizacji lokalnego kontrastu ($\alpha$) na~dokładność klasyfikacji
+    sieci neuronowej przy~100~tysiącach iteracji}
+    \label{table:wyniki1}
+\end{table}
+\end{frame}
+\begin{frame}{Interpretacja wyników eksperymentu nr 1}
+    Obserwacje:
+    \begin{itemize}
+        \item odpowiednio dobrany parametr $\alpha$ zwiększa dokładność klasyfikacji,
+        \item regularyzacja pogarsza dokładność klasyfikacji.
+    \end{itemize}
+    \vspace{5mm}
+    Prawdopodobny powód: zjawisko przeuczenia sieci (\textit{ang.~overfitting}) nie występuje lub jest znikome.
+\end{frame}
+\begin{frame}{Dokładność sieci na zbiorze testowym i uczącym}
+  \begin{figure}
+    \includegraphics[width=\textwidth]{img/badanie_1.png}
+  \end{figure}
+\end{frame}
+\begin{frame}{Badanie ze~zwiększoną liczbą iteracji}
+    \begin{itemize}
+        \item liczba iteracji: zwiększona do 144 tysięcy,
+        \item cel: przeuczenie sieci.
+    \end{itemize}
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|l|l|l|l|l|l|}
+            \hline
+            \backslashbox{$\alpha$}{$\lambda$} & 0.0005 & 0.001 & 0.005 & 0.01 & 0.05 \\
+            \hline
+            0.00001 & 0.90 & 0.89 & 0.87 & 0.83 & 0.82 \\
+            \hline
+            0.00005 & 0.91 & 0.88 & 0.85 & 0.83 & 0.84 \\
+            \hline
+            0.0001  & 0.90 & 0.88 & 0.88 & 0.87 & 0.87 \\
+            \hline
+            0.0005  & 0.92 & 0.92 & 0.89 & 0.87 & 0.86 \\
+            \hline
+            0.001   & 0.89 & 0.87 & 0.87 & 0.83 & 0.83 \\
+            \hline
+        \end{tabular}
+        \caption{Wpływ regularyzacji L2 ($\lambda$) i~normalizacji lokalnego kontrastu ($\alpha$) na~dokładność klasyfikacji
+        sieci neuronowej przy~144~tysiącach iteracji}
+        \label{table:wyniki2}
+    \end{table}
+\end{frame}
+\begin{frame}{Dokładność sieci na zbiorze testowym i uczącym}
+  \begin{figure}
+    \includegraphics[width=\textwidth]{img/badanie_2.png}
+  \end{figure}
+\end{frame}
+\begin{frame}{Interpretacja wyników eksperymentu nr 2}
+    Obserwacje:
+    \begin{itemize}
+        \item wpływ regularyzacji i lokalnej normalizacji odpowiedzi na~dokładność klasyfikacji pozostał taki sam,
+        \item sieć nie~została przeuczona.
+    \end{itemize}
+    \vspace{5mm}
+\end{frame}
+\begin{frame}{Ograniczony zbiór przykładów uczących}
+    \begin{itemize}
+        \item sześciokrotnie zmniejszono zbiór uczący,
+        \item liczba iteracji: 144 tysiące.
+    \end{itemize}
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|l|l|l|l|l|l|}
+            \hline
+            \backslashbox{$\alpha$}{$\lambda$} & 0.0005 & 0.001 & 0.005 & 0.01 & 0.05 \\
+            \hline
+            0.00001 & 0.76 & 0.80 & 0.74 & 0.69 & 0.69 \\
+            \hline
+            0.00005 & 0.78 & 0.77 & 0.72 & 0.69 & 0.67 \\
+            \hline
+            0.0001  & 0.77 & 0.78 & 0.79 & 0.74 & 0.73 \\
+            \hline
+            0.0005  & 0.78 & 0.82 & 0.76 & 0.76 & 0.72 \\
+            \hline
+            0.001   & 0.76 & 0.79 & 0.76 & 0.69 & 0.69 \\
+            \hline
+        \end{tabular}
+        \caption{Wpływ regularyzacji L2 ($\lambda$) i~normalizacji lokalnego kontrastu ($\alpha$) na~dokładność klasyfikacji
+        sieci neuronowej przy~sześciokrotnie zmniejszonym zbiorze uczącym}
+        \label{table:wyniki3}
+    \end{table}
+\end{frame}
+\begin{frame}{Dokładność sieci na zbiorze testowym i uczącym}
+  \begin{figure}
+    \includegraphics[width=\textwidth]{img/badanie_3.png}
+  \end{figure}
+\end{frame}
+\begin{frame}{Badanie pomocniczne}
+  \textbf{Cel:} Wyznaczenie pikseli najistotniejszych z~punktu widzenia klasyfikacji.
+  \begin{figure}
+    \includegraphics[width=\textwidth]{img/heatmap_1.png}
+  \end{figure}
+\end{frame}
+\begin{frame}{Badanie pomocniczne c.d.}
+  \begin{figure}
+    \includegraphics[width=\textwidth]{img/heatmap_2.png}
+  \end{figure}
+\end{frame}
+\begin{frame}{Badanie pomocniczne c.d.}
+  \begin{figure}
+    \includegraphics[width=\textwidth]{img/heatmap_3.png}
+  \end{figure}
+\end{frame}
+\begin{frame}{Badanie pomocniczne c.d.}
+  \begin{figure}
+    \includegraphics[width=\textwidth]{img/heatmap_4.png}
+  \end{figure}
+\end{frame}
+
+
+\section{Podsumowanie}
+\begin{frame}{Podsumowanie}
+  \begin{itemize}
+    \item TODO.
+  \end{itemize}
+\end{frame}
+\begin{frame}{Bibliografia}
+	\begin{itemize}
+		\item Cichosz P., Systemy uczące się, WNT Warszawa, 2000,
+		\item https://www.tensorflow.org/
+		\item http://karpathy.github.io/,
+		\item https://pl.wikipedia.org/wiki/Uczenie\_nadzorowane,
+		\item https://pl.wikipedia.org/wiki/Uczenie\_nienadzorowane,
+		\item https://pl.wikipedia.org/wiki/Sieć\_neuronowa,
+		\item https://docs.gimp.org/en/plug-in-convmatrix.html,
+		\item http://www.andrewng.org/.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Pytania}
+  \begin{figure}
+    \includegraphics[width=0.35\textwidth]{img/question-mark-red.png}
+  \end{figure}
+\end{frame}
+
+\end{document}
