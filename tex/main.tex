@@ -98,7 +98,7 @@
     \end{figure}
 \end{frame}
 \subsection{Sieci splotowe}
-\begin{frame}
+\begin{frame}{Sieci splotowe}
     Splotowe sieci neuronowe:
     \begin{itemize}
         \item wykorzystują wiele filtrów splotowych,
@@ -108,8 +108,47 @@
         \item w~końcowych etapach przetwarzania wykorzystywane są warstwy w~pełni połączone.
     \end{itemize}
 \end{frame}
+\begin{frame}{Faza I - Splot}
+	\begin{figure}
+		\includegraphics[width=\linewidth, height=0.7\textheight, keepaspectratio] {img/convolution.png}
+	\end{figure}
+\end{frame}
+\begin{frame}{Faza II - Próbkowanie (\textit{ang.~subsampling})}
+	\begin{minipage}[t]{0.6\linewidth}
+		\begin{itemize}
+			\item szybko rosnący rozmiar danych wyjściowych dla kolejnych warstw,
+			\item zmniejszanie rozmiaru danych przez zmniejszanie obrazków,
+			\item average pooling i max-pooling.
+		\end{itemize}
+	\end{minipage}%
+	\hfill
+	\begin{minipage}[t]{0.3\linewidth}
+		\vfill
+		\begin{figure}
+			\includegraphics[width=\linewidth, height=0.7\textheight, keepaspectratio] {img/pooling.png}
+		\end{figure}
+	\end{minipage}
+\end{frame}
+
+\begin{frame}{Faza końcowa}
+	\begin{figure}
+		\includegraphics[width=\linewidth, height=0.7\textheight, keepaspectratio] {img/fully_connected_layer.png}
+	\end{figure}
+\end{frame}
+
 
 \subsection{Zabiegi zwiększające jakość klasyfikacji}
+\begin{frame}{Zwiększanie jakości klasyfikacji}
+    \begin{itemize}
+        \item regularyzacja~--~zapobieganie przeuczeniu sieci (\textit{ang.~overfitting}),
+        \item normalizacja (np.~lokalna normalizacja odpowiedzi).
+    \end{itemize}
+\end{frame}
+\begin{frame}{Lokalna normalizacja odpowiedzi}
+    \begin{figure}
+		\includegraphics[width=\linewidth, height=0.7\textheight, keepaspectratio] {img/chess-illusion.png}
+	\end{figure}
+\end{frame}
 
 \section{Badania}
 \subsection{Cel badań}
