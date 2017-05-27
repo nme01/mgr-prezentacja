@@ -78,16 +78,60 @@ Eksperyment pierwotny
 ======
 Pierwszy wykonany eksperyment trwał ponad 40 godzin. Jego wyniki były jednak zaskakujące. Otóż okazało się, że o ile
 odpowiednio dobrany parametr lokalnej normalizacji odpowiedzi poprawia jakość klasyfikacji, o tyle regularyzacja
-im mniejszy miała wpływ na uczenie, tym lepsze wyniki osiągała sieć. Prawdopodobnym powodem, dla którego regularyzacja
-pogarszała jakość klasyfikacji, było niewystępowanie przeuczenia sieci. Żeby sprawdzić czy to negatywne zjawisko
-rzeczywiście nie występowało, sporządzono wykresy przedstawiające zależność dokładności klasyfikacji od numeru iteracji
-podczas uczenia.
+im mniejszy miała wpływ na uczenie, tym lepsze wyniki osiągała sieć.
 
 Interpretacja wyników 1
 ======
+Prawdopodobnym powodem, dla którego regularyzacja pogarszała jakość klasyfikacji, było niewystępowanie przeuczenia
+sieci. Żeby sprawdzić czy to negatywne zjawisko rzeczywiście nie występowało, sporządzono wykresy przedstawiające
+zależność dokładności klasyfikacji od numeru iteracji uczenia na zbiorach testowym i uczącym.
+
+Dokładność sieci na zbiorze testowym i uczącym
+======
 Na górnym wykresie przedstawiono wykres dla zbioru testowego, a na dolnym -- dla zbioru uczącego.
 Jeśli zjawisko przeuczenia by występowało, wówczas powinniśmy obserwować, że dla zbioru testowego od pewnej iteracji
-dokładność zaczyna spadać, a dla zbioru testowego wciąż rośnie.
+dokładność zaczyna spadać, a dla zbioru testowego wciąż rośnie. Tutaj zjawiska tego nie obserwujemy.
 
 Badanie ze zwiększoną liczbą iteracji
 ======
+Żeby sztucznie wywołać zjawisko przeuczenia i sprawdzić czy wówczas regularyzacja pomaga postanowiono zwiększyć liczbę
+iteracji. Skutkowało to wydłużeniem badania do ponad 64 godzin. Niestety obserwacje były podobne jak w badaniu
+poprzednim: regularyzacja pogarszała dokładność klasyfikacji.
+
+Dokładność sieci na zbiorze testowym i uczącym
+======
+Jak widać ponownie nie udało się zaobserwować zjawiska przeuczenia. Przypuszczalnie z tego powodu regularyzacja
+przeszkadzała w procesie uczenia sieci.
+
+Ograniczony zbiór przykładów uczących
+======
+Żeby sztucznie wywołać zjawisko przeuczenia sieci postanowiłem spróbować innego sposobu, a mianowicie sześciokrotnie
+zmniejszyć zbiór obrazków, na których uczona była sieć. Pozwoliło to na zaobserwowanie, że dla odpowiednio dobranych
+wartości hiperparametrów alfa i lambda, dokładność klasyfikacji ulega poprawie.
+
+Dokładność sieci na zbiorze testowym i uczącym
+======
+Sprawdziłem, że w tym badaniu wystąpiło zjawisko przeuczenia sieci. Widać, że dla zbioru testowego (górny slajd)
+od pewnego momentu dokładność klasyfikacji ulega pogorszeniu, podczas gdy dla zbioru uczącego ciągle rośnie.
+
+Badanie pomocnicze
+======
+W celu sprawdzenia czy sieć na pewno bierze pod uwagę istotne elementy z punktu widzenia poprawnej klasyfikacji
+wykonano badanie pomocnicze. Wyniki tego badania to mapy ciepła, na których im piksel jest ciemniejszy, tym większy
+jego wpływ na otrzymanie poprawnej klasy obrazka.
+
+Wnioski końcowe
+======
+Wnioski płynące z wykonanych przeze mnie badań to przede wszystkim to, że stosowanie zabiegów, które uważane są
+za zwiększające jakość klasyfikacji nie koniecznie musi mieć sens. Dlatego warto posiłkować się dodatkowymi badaniami,
+które pomagają zrozumieć, w jaki sposób skonstruowana przez nas sieć działa.
+
+Bibliografia
+======
+Podczas tworzenia prezentacji korzystałem głównie z anglojęzycznych artykułów, ale również z podręczników takich,
+jak choćby ,,Systemy uczące się'' doktora Pawła Cichosza.
+
+Pytania
+======
+Niestety przez dość mocno ograniczony czas przeznaczony na prezentację pewne rzeczy zostały omówione dośc pobieżnie.
+Dlatego chętnie wyjaśnię wszelkie niejasności. Dziękuję Państwu za uwagę.
