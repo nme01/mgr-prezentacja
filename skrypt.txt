@@ -1,54 +1,59 @@
-Slajd tytułowy
+1. Slajd tytułowy
 ======
 Dzień dobry Państwu. Nazywam się Jacek Witkowski. Moim promotorem jest Pan Rajmund Kożuszek, a tytuł mojej pracy
 to ,,Metody głębokiego uczenia w wybranych problemach klasyfikacji''.
 
-Plan prezentacji
+
+
+
+
+2. Plan prezentacji
 ======
 Na początku prezentacji krótko objaśnię czym są sieci splotowe i jak działają. Następnie przedstawię przeprowadzone
 przeze mnie badania i płynące z nich wnioski. Całość zakończę krótkim podsumowaniem.
 
-Splot dyskretny
+3. Splot dyskretny
 ======
-Splot dyskretny wykorzystywany jest w grafice komputerowej do przekształceń obrazu, gdzie obraz źródłowy splatany
-jest z jądrem splotu, czyli tzw. maską. By obliczyć wartość piksela w obrazie wyjściowym na piksel nakładana jest maska.
-Następnie wartości pikseli wymnażane są przez odpowiadające im wartości maski, a na koniec wszystkie iloczyny są ze sobą
-sumowane. Operacja przeprowadzana jest dla każdego piksela w ten sam sposób.
+Rozpocznę od omówienia pojęcia splotu dyskretnego. Splot dyskretny jest wykorzystywany
+w grafice komputerowej do przekształceń obrazu, gdzie obraz źródłowy splatany jest z jądrem splotu, czyli tzw. maską.
+By obliczyć wartość piksela w obrazie wyjściowym na piksel nakładana jest maska.
+Następnie wartości maski wymnażane są przez odpowiadające im wartości pikseli w obrazie źródłowym,
+a na koniec wszystkie iloczyny są ze sobą sumowane. Operacja przeprowadzana jest dla każdego piksela w ten sam sposób.
 
-Filtr Gaussa
+4. Filtr Gaussa
 ======
-Różne wartości jądra splotu pozwalają na uzyskiwanie różnych efektów. Zaprezentowane przeze mnie jądro splotu nazywane
-jest filtrem Gaussa i wykorzystywane jest do wygładzania obrazów. Inne zastosowania to np. wyostrzanie
+Różne jądra splotu pozwalają na uzyskiwanie różnych efektów. To które zaprezentowałem używane jest
+przez filtr Gaussa i służy do wygładzania obrazów. Inne jądra pozwalają np. na wyostrzanie obrazów
 czy wykrywanie krawędzi.
 
-Sieci splotowe
+5. Sieci splotowe
 ======
 Ideą sieci splotowych jest stosowanie wielu różnych jąder splotu na tym samym obrazie. Wartości tych jąder ustalane
-są w procesie uczenia sieci, tak by wykrywały porządane z punktu widzenia klasyfikacji cechy. Zwykle po przeprowadzeniu
-operacji splotów powstałe obrazy wynikowe są zmniejszane, tak by zredykować ilość przetwarzanych danych. Na końcu sieci
-stosuje się warstwy w pełni połączone tzn. takie, które zawierają neurony połaczone ze wszystkimi pikselami w warstwie
+są w procesie uczenia sieci, tak by wykrywały cechy pożądane z punktu widzenia klasyfikacji. Zwykle po przeprowadzeniu
+operacji splotów powstałe obrazy wynikowe są zmniejszane po to, by zredukować ilość przetwarzanych danych. Na końcu sieci
+stosuje się warstwy w pełni połączone tzn. takie, które zawierają neurony połączone ze wszystkimi pikselami w warstwie
 poprzedniej.
 
-Faza I - Splot
+6. Faza I - Splot
 ======
 Tak więc w pierwszej fazie działania sieci dokonywane są różne operacje splotów, co skutkuje powstaniem kolejnych
-obrazów o takich samych rozmiarach, jak obraz wejściowy. Liczba tych obrazów jest równa liczbie zastosowanych jąder
-splotu.
+obrazów o takiej samej wysokości i szerokości, jak obraz wejściowy. Liczba tych obrazów jest równa liczbie zastosowanych
+jąder splotu.
 
-Faza II - Próbkowanie
+7. Faza II - Próbkowanie
 ======
 Następnie obrazy są zmniejszane, co pozwala na ograniczenie ilości przetwarzanych danych. Istnieje co najmniej kilka
 sposobów na przeprowadzenie próbkowania.
 
-Faza końcowa
+8. Faza końcowa
 ======
 Faza pierwsza i druga są wykonywane naprzemiennie, zwykle od kilku do nawet kilkudziesięciu razy. Stąd w końcowych
 etapach przetwarzania wstępuje ogromna liczba przetwarzanych obrazów (tzw. map cech). Na końcu wartości wszystkich
 pikseli trafiają do wszystkich neuronów warstwy w pełni połączonej. W tym momemncie przetwarzanie odbywa się w taki
 sam sposób, jak w zwykłej sieci neuronowej. W warstwach w pełni połączonych istnieje ryzyko wystąpienia zjawiska
-zbytniego dopasowania się sieci do danych, czyli przeuczenia lub po angielsku: overfittingu.
+zbytniego dopasowania się sieci do danych, czyli przeuczenia.
 
-Zwiększanie jakości klasyfikacji
+9. Zwiększanie jakości klasyfikacji
 ======
 Żeby temu zapobiegać stosuje się tzw. regularyzację. Dodatkowym zabiegiem stosowanym w sieciach splotowych jest
 lokalna normalizacja odpowiedzi. Jej celem jest zapewnienie, że gdy na każdej mapie cech uwzględnimy pewien obszar
@@ -56,82 +61,94 @@ lokalna normalizacja odpowiedzi. Jej celem jest zapewnienie, że gdy na każdej 
 równe 1. Ludzki aparat wzrokowy również dokonuje takiej normalizacji, co zwizualizowano na obrazku, gdzie pola A i B
 mają ten sam kolor.
 
-Cel badań
+10. Cel badań
 ======
 Celem przeprowadzonych przeze mnie badań było sprawdzenie jaki wpływ na jakość klasyfikacji ma zastosowanie
 regularyzacji i lokalnej normalizacji odpowiedzi. Jako wyznacznik jakości klasyfikacji przyjąłem dokładność, czyli
-stosunek obrazków poprawnie sklasyfikowanych do liczby wszystkich obrazków.
+stosunek liczby obrazków poprawnie sklasyfikowanych do liczby wszystkich obrazków.
 
-Dobór wartości hiperparametrów
+11. Dobór wartości hiperparametrów
 ======
 Badane hiperparametry sieci to lambda, która określa intensywność regularyzacji i alfa, która określa intensywność
 lokalnej normalizacji odpowiedzi. W badaniu wykorzystano przeszukiwanie kratowe, które polegało na wybraniu
-dla każdego z hiperparametrów pewnego zbioru wartości, które mają być sprawdzone, a następnie na zbadaniu sieci
-dla wszystkich możliwych kombinacji wartości lambdy i alfy.
+dla każdego z hiperparametrów pewnego zbioru wartości, które mają być sprawdzone, a następnie na zbadaniu
+wszystkich możliwych kombinacji wartości lambdy i alfy.
 
-Architektura sieci
+12. Architektura sieci
 ======
-W badanych przeze mnie sieciach wykorzystano taką samą architekturę. Wyodrębnić w niej można dwa bloki, w ramach których
-dokonywano splotu, skalowania i normalizacji. Następnie dane przetwarzane były przez 3 warstwy w pełni połączone.
+Wszystkie z badanych przeze mnie sieci wykorzystywały taką samą architekturę. Wyodrębnić w niej można dwa bloki,
+w ramach których dokonywano splotu, skalowania i normalizacji. Następnie dane przetwarzane były przez 3 warstwy
+w pełni połączone.
 
-Eksperyment pierwotny
+13. Eksperyment pierwotny
 ======
-Pierwszy wykonany eksperyment trwał ponad 40 godzin. Jego wyniki były jednak zaskakujące. Otóż okazało się, że o ile
+Pierwszy wykonany eksperyment trwał ponad 40 godzin. Jego wyniki były dość zaskakujące. Okazało się, że o ile
 odpowiednio dobrany parametr lokalnej normalizacji odpowiedzi poprawia jakość klasyfikacji, o tyle regularyzacja
 im mniejszy miała wpływ na uczenie, tym lepsze wyniki osiągała sieć.
 
-Interpretacja wyników 1
+14. Interpretacja wyników 1
 ======
 Prawdopodobnym powodem, dla którego regularyzacja pogarszała jakość klasyfikacji, było niewystępowanie przeuczenia
 sieci. Żeby sprawdzić czy to negatywne zjawisko rzeczywiście nie występowało, sporządzono wykresy przedstawiające
 zależność dokładności klasyfikacji od numeru iteracji uczenia na zbiorach testowym i uczącym.
 
-Dokładność sieci na zbiorze testowym i uczącym
+15. Dokładność sieci na zbiorze testowym i uczącym
 ======
 Na górnym wykresie przedstawiono wykres dla zbioru testowego, a na dolnym -- dla zbioru uczącego.
 Jeśli zjawisko przeuczenia by występowało, wówczas powinniśmy obserwować, że dla zbioru testowego od pewnej iteracji
 dokładność zaczyna spadać, a dla zbioru testowego wciąż rośnie. Tutaj zjawiska tego nie obserwujemy.
 
-Badanie ze zwiększoną liczbą iteracji
+16. Badanie ze zwiększoną liczbą iteracji
 ======
 Żeby sztucznie wywołać zjawisko przeuczenia i sprawdzić czy wówczas regularyzacja pomaga postanowiono zwiększyć liczbę
 iteracji. Skutkowało to wydłużeniem badania do ponad 64 godzin. Niestety obserwacje były podobne jak w badaniu
 poprzednim: regularyzacja pogarszała dokładność klasyfikacji.
 
-Dokładność sieci na zbiorze testowym i uczącym
+17. Dokładność sieci na zbiorze testowym i uczącym
 ======
 Jak widać ponownie nie udało się zaobserwować zjawiska przeuczenia. Przypuszczalnie z tego powodu regularyzacja
 przeszkadzała w procesie uczenia sieci.
 
-Ograniczony zbiór przykładów uczących
+18. Ograniczony zbiór przykładów uczących
 ======
 Żeby sztucznie wywołać zjawisko przeuczenia sieci postanowiłem spróbować innego sposobu, a mianowicie sześciokrotnie
 zmniejszyć zbiór obrazków, na których uczona była sieć. Pozwoliło to na zaobserwowanie, że dla odpowiednio dobranych
 wartości hiperparametrów alfa i lambda, dokładność klasyfikacji ulega poprawie.
 
-Dokładność sieci na zbiorze testowym i uczącym
+19. Dokładność sieci na zbiorze testowym i uczącym
 ======
 Sprawdziłem, że w tym badaniu wystąpiło zjawisko przeuczenia sieci. Widać, że dla zbioru testowego (górny slajd)
 od pewnego momentu dokładność klasyfikacji ulega pogorszeniu, podczas gdy dla zbioru uczącego ciągle rośnie.
 
-Badanie pomocnicze
+20. Badanie pomocnicze
 ======
 W celu sprawdzenia czy sieć na pewno bierze pod uwagę istotne elementy z punktu widzenia poprawnej klasyfikacji
 wykonano badanie pomocnicze. Wyniki tego badania to mapy ciepła, na których im piksel jest ciemniejszy, tym większy
 jego wpływ na otrzymanie poprawnej klasy obrazka.
 
-Wnioski końcowe
+21. Wnioski końcowe
 ======
 Wnioski płynące z wykonanych przeze mnie badań to przede wszystkim to, że stosowanie zabiegów, które uważane są
-za zwiększające jakość klasyfikacji nie koniecznie musi mieć sens. Dlatego warto posiłkować się dodatkowymi badaniami,
+za zwiększające jakość klasyfikacji niekoniecznie musi mieć sens. Dlatego warto posiłkować się dodatkowymi badaniami,
 które pomagają zrozumieć, w jaki sposób skonstruowana przez nas sieć działa.
 
-Bibliografia
+22. Bibliografia
 ======
 Podczas tworzenia prezentacji korzystałem głównie z anglojęzycznych artykułów, ale również z podręczników takich,
 jak choćby ,,Systemy uczące się'' doktora Pawła Cichosza.
 
-Pytania
+23. Pytania
 ======
-Niestety przez dość mocno ograniczony czas przeznaczony na prezentację pewne rzeczy zostały omówione dośc pobieżnie.
+Niestety przez dość mocno ograniczony czas przeznaczony na prezentację pewne rzeczy zostały omówione dość pobieżnie.
 Dlatego chętnie wyjaśnię wszelkie niejasności. Dziękuję Państwu za uwagę.
+
+
+
+
+
+
+
+
+
+
+
