@@ -69,3 +69,25 @@ lokalnej normalizacji odpowiedzi. W badaniu wykorzystano przeszukiwanie kratowe,
 dla każdego z hiperparametrów pewnego zbioru wartości, które mają być sprawdzone, a następnie na zbadaniu sieci
 dla wszystkich możliwych kombinacji wartości lambdy i alfy.
 
+Architektura sieci
+======
+W badanych przeze mnie sieciach wykorzystano taką samą architekturę. Wyodrębnić w niej można dwa bloki, w ramach których
+dokonywano splotu, skalowania i normalizacji. Następnie dane przetwarzane były przez 3 warstwy w pełni połączone.
+
+Eksperyment pierwotny
+======
+Pierwszy wykonany eksperyment trwał ponad 40 godzin. Jego wyniki były jednak zaskakujące. Otóż okazało się, że o ile
+odpowiednio dobrany parametr lokalnej normalizacji odpowiedzi poprawia jakość klasyfikacji, o tyle regularyzacja
+im mniejszy miała wpływ na uczenie, tym lepsze wyniki osiągała sieć. Prawdopodobnym powodem, dla którego regularyzacja
+pogarszała jakość klasyfikacji, było niewystępowanie przeuczenia sieci. Żeby sprawdzić czy to negatywne zjawisko
+rzeczywiście nie występowało, sporządzono wykresy przedstawiające zależność dokładności klasyfikacji od numeru iteracji
+podczas uczenia.
+
+Interpretacja wyników 1
+======
+Na górnym wykresie przedstawiono wykres dla zbioru testowego, a na dolnym -- dla zbioru uczącego.
+Jeśli zjawisko przeuczenia by występowało, wówczas powinniśmy obserwować, że dla zbioru testowego od pewnej iteracji
+dokładność zaczyna spadać, a dla zbioru testowego wciąż rośnie.
+
+Badanie ze zwiększoną liczbą iteracji
+======
