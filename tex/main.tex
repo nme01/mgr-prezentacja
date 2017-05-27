@@ -82,7 +82,6 @@
     \end{block}
     \begin{figure}
 		\includegraphics[width=\linewidth, keepaspectratio] {img/convolutional_filter.png}
-		\caption{https://docs.gimp.org/en/plug-in-convmatrix.html}
 	\end{figure}
 \end{frame}
 \begin{frame}{Filtr Gaussa}
@@ -142,15 +141,19 @@
 
 \subsection{Zabiegi zwiększające jakość klasyfikacji}
 \begin{frame}{Zwiększanie jakości klasyfikacji}
-    \begin{itemize}
-        \item regularyzacja~--~zapobieganie przeuczeniu sieci (\textit{ang.~overfitting}),
-        \item normalizacja (np.~lokalna normalizacja odpowiedzi).
-    \end{itemize}
-\end{frame}
-\begin{frame}{Lokalna normalizacja odpowiedzi}
-    \begin{figure}
-		\includegraphics[width=\linewidth, height=0.7\textheight, keepaspectratio] {img/chess-illusion.png}
-	\end{figure}
+    \begin{minipage}[t]{0.48\linewidth}
+        \begin{itemize}
+            \item regularyzacja~--~zapobieganie przeuczeniu sieci (\textit{ang.~overfitting}),
+            \item normalizacja (np.~lokalna normalizacja odpowiedzi).
+        \end{itemize}
+	\end{minipage}%
+	\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+        \begin{figure}
+            \includegraphics[width=\linewidth, height=0.7\textheight, keepaspectratio] {img/chess-illusion.png}
+            \caption{Lokalna normalizacja odpowiedzi}
+        \end{figure}
+	\end{minipage}
 \end{frame}
 
 \section{Badania}
