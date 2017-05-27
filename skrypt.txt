@@ -56,3 +56,16 @@ lokalna normalizacja odpowiedzi. Jej celem jest zapewnienie, że gdy na każdej 
 równe 1. Ludzki aparat wzrokowy również dokonuje takiej normalizacji, co zwizualizowano na obrazku, gdzie pola A i B
 mają ten sam kolor.
 
+Cel badań
+======
+Celem przeprowadzonych przeze mnie badań było sprawdzenie jaki wpływ na jakość klasyfikacji ma zastosowanie
+regularyzacji i lokalnej normalizacji odpowiedzi. Jako wyznacznik jakości klasyfikacji przyjąłem dokładność, czyli
+stosunek obrazków poprawnie sklasyfikowanych do liczby wszystkich obrazków.
+
+Dobór wartości hiperparametrów
+======
+Badane hiperparametry sieci to lambda, która określa intensywność regularyzacji i alfa, która określa intensywność
+lokalnej normalizacji odpowiedzi. W badaniu wykorzystano przeszukiwanie kratowe, które polegało na wybraniu
+dla każdego z hiperparametrów pewnego zbioru wartości, które mają być sprawdzone, a następnie na zbadaniu sieci
+dla wszystkich możliwych kombinacji wartości lambdy i alfy.
+
