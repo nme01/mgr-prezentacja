@@ -1,0 +1,58 @@
+Slajd tytułowy
+======
+Dzień dobry Państwu. Nazywam się Jacek Witkowski. Moim promotorem jest Pan Rajmund Kożuszek, a tytuł mojej pracy
+to ,,Metody głębokiego uczenia w wybranych problemach klasyfikacji''.
+
+Plan prezentacji
+======
+Na początku prezentacji krótko objaśnię czym są sieci splotowe i jak działają. Następnie przedstawię przeprowadzone
+przeze mnie badania i płynące z nich wnioski. Całość zakończę krótkim podsumowaniem.
+
+Splot dyskretny
+======
+Splot dyskretny wykorzystywany jest w grafice komputerowej do przekształceń obrazu, gdzie obraz źródłowy splatany
+jest z jądrem splotu, czyli tzw. maską. By obliczyć wartość piksela w obrazie wyjściowym na piksel nakładana jest maska.
+Następnie wartości pikseli wymnażane są przez odpowiadające im wartości maski, a na koniec wszystkie iloczyny są ze sobą
+sumowane. Operacja przeprowadzana jest dla każdego piksela w ten sam sposób.
+
+Filtr Gaussa
+======
+Różne wartości jądra splotu pozwalają na uzyskiwanie różnych efektów. Zaprezentowane przeze mnie jądro splotu nazywane
+jest filtrem Gaussa i wykorzystywane jest do wygładzania obrazów. Inne zastosowania to np. wyostrzanie
+czy wykrywanie krawędzi.
+
+Sieci splotowe
+======
+Ideą sieci splotowych jest stosowanie wielu różnych jąder splotu na tym samym obrazie. Wartości tych jąder ustalane
+są w procesie uczenia sieci, tak by wykrywały porządane z punktu widzenia klasyfikacji cechy. Zwykle po przeprowadzeniu
+operacji splotów powstałe obrazy wynikowe są zmniejszane, tak by zredykować ilość przetwarzanych danych. Na końcu sieci
+stosuje się warstwy w pełni połączone tzn. takie, które zawierają neurony połaczone ze wszystkimi pikselami w warstwie
+poprzedniej.
+
+Faza I - Splot
+======
+Tak więc w pierwszej fazie działania sieci dokonywane są różne operacje splotów, co skutkuje powstaniem kolejnych
+obrazów o takich samych rozmiarach, jak obraz wejściowy. Liczba tych obrazów jest równa liczbie zastosowanych jąder
+splotu.
+
+Faza II - Próbkowanie
+======
+Następnie obrazy są zmniejszane, co pozwala na ograniczenie ilości przetwarzanych danych. Istnieje co najmniej kilka
+sposobów na przeprowadzenie próbkowania.
+
+Faza końcowa
+======
+Faza pierwsza i druga są wykonywane naprzemiennie, zwykle od kilku do nawet kilkudziesięciu razy. Stąd w końcowych
+etapach przetwarzania wstępuje ogromna liczba przetwarzanych obrazów (tzw. map cech). Na końcu wartości wszystkich
+pikseli trafiają do wszystkich neuronów warstwy w pełni połączonej. W tym momemncie przetwarzanie odbywa się w taki
+sam sposób, jak w zwykłej sieci neuronowej. W warstwach w pełni połączonych istnieje ryzyko wystąpienia zjawiska
+zbytniego dopasowania się sieci do danych, czyli przeuczenia lub po angielsku: overfittingu.
+
+Zwiększanie jakości klasyfikacji
+======
+Żeby temu zapobiegać stosuje się tzw. regularyzację. Dodatkowym zabiegiem stosowanym w sieciach splotowych jest
+lokalna normalizacja odpowiedzi. Jej celem jest zapewnienie, że gdy na każdej mapie cech uwzględnimy pewien obszar
+(taki sam na każdej mapie cech), to piksele z tego obszaru będą miały średnią wartość równą 0 i odchylenie standardowe
+równe 1. Ludzki aparat wzrokowy również dokonuje takiej normalizacji, co zwizualizowano na obrazku, gdzie pola A i B
+mają ten sam kolor.
+
