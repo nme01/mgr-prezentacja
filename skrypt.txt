@@ -76,7 +76,7 @@ wszystkich możliwych kombinacji wartości lambdy i alfy.
 W swoich badaniach jako zbiór danych wykorzystałem bazę obrazków CIFAR10. Baza zawiera obrazki o rozdzielczości
 32x32 piksele. Każdemu obrazkowi przypisana jest jedna z 10 klas (np. kot, pies). Jako platformę programistyczną
 wykorzystałem bibliotekę Tensorflow. Jej silnik obliczeniowy napisany został w języku C++, co zapewnia szybkie
-działanie. Jednocześnie możliwe jest jej używanie z poziomu języka Python, co zapewnia większą czytelność kodu
+działanie. Jednocześnie możliwe jest jej używanie z poziomu języka Python, co zapewnia czytelność kodu
 i łatwość użycia. Biblioteka jest szeroko stosowana w dziedzinie uczenia maszynowego. Pozwala m.in. na uruchamianie
 kodu na wielu procesorach i wielu kartach graficznych.
 
