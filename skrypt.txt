@@ -70,70 +70,79 @@ lokalnej normalizacji odpowiedzi. W badaniu wykorzystano przeszukiwanie kratowe,
 dla każdego z hiperparametrów pewnego zbioru wartości, które mają być sprawdzone, a następnie na zbadaniu
 wszystkich możliwych kombinacji wartości lambdy i alfy.
 
-12. Architektura sieci
+12. Środowisko testowe
+======
+W swoich badaniach jako zbiór danych wykorzystałem bazę obrazków CIFAR10. Baza zawiera obrazki o rozdzielczości
+32x32 piksele. Każdemu obrazkowi przypisana jest jedna z 10 klas (np. kot, pies). Jako platformę programistyczną
+wykorzystałem bibliotekę Tensorflow. Jej silnik obliczeniowy napisany został w języku C++, co zapewnia szybkie
+działanie. Jednocześnie możliwe jest jej używanie z poziomu języka Python, co zapewnia większą czytelność kodu
+i łatwość użycia. Biblioteka jest szeroko stosowana w dziedzinie uczenia maszynowego. Pozwala m.in. na uruchamianie
+kodu na wielu procesorach i wielu kartach graficznych.
+
+13. Architektura sieci
 ======
 Wszystkie z badanych przeze mnie sieci wykorzystywały taką samą architekturę. Wyodrębnić w niej można dwa bloki,
 w ramach których dokonywano splotu, skalowania i normalizacji. Następnie dane przetwarzane były przez 3 warstwy
 w pełni połączone.
 
-13. Eksperyment pierwotny
+14. Eksperyment pierwotny
 ======
 Pierwszy wykonany eksperyment trwał ponad 40 godzin. Jego wyniki były dość zaskakujące. Okazało się, że o ile
 odpowiednio dobrany parametr lokalnej normalizacji odpowiedzi poprawia jakość klasyfikacji, o tyle regularyzacja
 im mniejszy miała wpływ na uczenie, tym lepsze wyniki osiągała sieć.
 
-14. Interpretacja wyników 1
+15. Interpretacja wyników 1
 ======
 Prawdopodobnym powodem, dla którego regularyzacja pogarszała jakość klasyfikacji, było niewystępowanie przeuczenia
 sieci. Żeby sprawdzić czy to negatywne zjawisko rzeczywiście nie występowało, sporządzono wykresy przedstawiające
 zależność dokładności klasyfikacji od numeru iteracji uczenia na zbiorach testowym i uczącym.
 
-15. Dokładność sieci na zbiorze testowym i uczącym
+16. Dokładność sieci na zbiorze testowym i uczącym
 ======
 Na górnym wykresie przedstawiono wyniki dla zbioru testowego, a na dolnym -- dla zbioru uczącego.
 Jeśli zjawisko przeuczenia by występowało, wówczas powinniśmy obserwować, że dla zbioru testowego od pewnej iteracji
 dokładność zaczyna spadać, a dla zbioru testowego wciąż rośnie. Tutaj zjawiska tego nie obserwujemy.
 
-16. Badanie ze zwiększoną liczbą iteracji
+17. Badanie ze zwiększoną liczbą iteracji
 ======
 Żeby sztucznie wywołać zjawisko przeuczenia i sprawdzić czy wówczas regularyzacja pomaga postanowiono zwiększyć liczbę
 iteracji. Skutkowało to wydłużeniem badania do ponad 64 godzin. Niestety obserwacje były podobne jak w badaniu
 poprzednim: regularyzacja pogarszała dokładność klasyfikacji.
 
-17. Dokładność sieci na zbiorze testowym i uczącym
+18. Dokładność sieci na zbiorze testowym i uczącym
 ======
 Jak widać ponownie nie udało się zaobserwować zjawiska przeuczenia. Przypuszczalnie z tego powodu regularyzacja
 przeszkadzała w procesie uczenia sieci.
 
-18. Ograniczony zbiór przykładów uczących
+19. Ograniczony zbiór przykładów uczących
 ======
 Żeby sztucznie wywołać zjawisko przeuczenia sieci postanowiłem spróbować innego sposobu, a mianowicie sześciokrotnie
 zmniejszyć zbiór obrazków, na których uczona była sieć. Pozwoliło to na zaobserwowanie, że dla odpowiednio dobranych
 wartości hiperparametrów alfa i lambda, dokładność klasyfikacji ulega poprawie.
 
-19. Dokładność sieci na zbiorze testowym i uczącym
+20. Dokładność sieci na zbiorze testowym i uczącym
 ======
 Sprawdziłem, że w tym badaniu wystąpiło zjawisko przeuczenia sieci. Widać, że dla zbioru testowego (górny slajd)
 od pewnego momentu dokładność klasyfikacji ulega pogorszeniu, podczas gdy dla zbioru uczącego ciągle rośnie.
 
-20. Badanie pomocnicze
+21. Badanie pomocnicze
 ======
 W celu sprawdzenia czy sieć na pewno bierze pod uwagę istotne elementy z punktu widzenia poprawnej klasyfikacji
 wykonano badanie pomocnicze. Wyniki tego badania to mapy ciepła, na których im piksel jest ciemniejszy, tym większy
 jego wpływ na otrzymanie poprawnej klasy obrazka.
 
-21. Wnioski końcowe
+22. Wnioski końcowe
 ======
 Wnioski płynące z wykonanych przeze mnie badań to przede wszystkim to, że stosowanie zabiegów, które uważane są
 za zwiększające jakość klasyfikacji niekoniecznie musi mieć sens. Dlatego warto posiłkować się dodatkowymi badaniami,
 które pomagają zrozumieć, w jaki sposób skonstruowana przez nas sieć działa.
 
-22. Bibliografia
+23. Bibliografia
 ======
 Podczas tworzenia prezentacji korzystałem głównie z anglojęzycznych artykułów, ale również z podręczników takich,
 jak choćby ,,Systemy uczące się'' doktora Pawła Cichosza.
 
-23. Pytania
+24. Pytania
 ======
 Niestety przez dość mocno ograniczony czas przeznaczony na prezentację pewne tematy zostały omówione dość pobieżnie.
 Dlatego chętnie wyjaśnię wszelkie niejasności. Dziękuję Państwu za uwagę.
