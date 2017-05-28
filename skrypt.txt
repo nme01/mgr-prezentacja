@@ -3,10 +3,6 @@
 Dzień dobry Państwu. Nazywam się Jacek Witkowski. Moim promotorem jest Pan Rajmund Kożuszek, a tytuł mojej pracy
 to ,,Metody głębokiego uczenia w wybranych problemach klasyfikacji''.
 
-
-
-
-
 2. Plan prezentacji
 ======
 Na początku prezentacji krótko objaśnię czym są sieci splotowe i jak działają. Następnie przedstawię przeprowadzone
@@ -94,7 +90,7 @@ zależność dokładności klasyfikacji od numeru iteracji uczenia na zbiorach t
 
 15. Dokładność sieci na zbiorze testowym i uczącym
 ======
-Na górnym wykresie przedstawiono wykres dla zbioru testowego, a na dolnym -- dla zbioru uczącego.
+Na górnym wykresie przedstawiono wyniki dla zbioru testowego, a na dolnym -- dla zbioru uczącego.
 Jeśli zjawisko przeuczenia by występowało, wówczas powinniśmy obserwować, że dla zbioru testowego od pewnej iteracji
 dokładność zaczyna spadać, a dla zbioru testowego wciąż rośnie. Tutaj zjawiska tego nie obserwujemy.
 
@@ -139,7 +135,7 @@ jak choćby ,,Systemy uczące się'' doktora Pawła Cichosza.
 
 23. Pytania
 ======
-Niestety przez dość mocno ograniczony czas przeznaczony na prezentację pewne rzeczy zostały omówione dość pobieżnie.
+Niestety przez dość mocno ograniczony czas przeznaczony na prezentację pewne tematy zostały omówione dość pobieżnie.
 Dlatego chętnie wyjaśnię wszelkie niejasności. Dziękuję Państwu za uwagę.
 
 
