@@ -15,6 +15,7 @@ w grafice komputerowej do przekształceń obrazu, gdzie obraz źródłowy splata
 By obliczyć wartość piksela w obrazie wyjściowym na piksel nakładana jest maska.
 Następnie wartości maski wymnażane są przez odpowiadające im wartości pikseli w obrazie źródłowym,
 a na koniec wszystkie iloczyny są ze sobą sumowane. Operacja przeprowadzana jest dla każdego piksela w ten sam sposób.
+Wartości maski są na ogół skalowane, tak by ich suma wynosiła 1, czego nie widać na pokazanym przykładzie.
 
 4. Filtr Gaussa
 ======
@@ -101,7 +102,7 @@ zależność dokładności klasyfikacji od numeru iteracji uczenia na zbiorach t
 ======
 Na górnym wykresie przedstawiono wyniki dla zbioru testowego, a na dolnym -- dla zbioru uczącego.
 Jeśli zjawisko przeuczenia by występowało, wówczas powinniśmy obserwować, że dla zbioru testowego od pewnej iteracji
-dokładność zaczyna spadać, a dla zbioru testowego wciąż rośnie. Tutaj zjawiska tego nie obserwujemy.
+dokładność zaczyna spadać, a dla zbioru uczącego wciąż rośnie. Tutaj zjawiska tego nie obserwujemy.
 
 17. Badanie ze zwiększoną liczbą iteracji
 ======
